@@ -1,6 +1,6 @@
 export const NavBar = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 sticky top-0 z-20">
       <div className="flex-1">
         <label
           htmlFor="my-drawer-2"

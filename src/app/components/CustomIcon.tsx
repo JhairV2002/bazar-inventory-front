@@ -8,7 +8,7 @@ export const CustomIcon = (props: ICustomIconProps) => {
       <FontAwesomeIcon
         icon={props.icon}
         size="xs"
-        className={props.className ? props.className : defaultClassName}
+        className={props.className || defaultClassName}
       />
     </>
   );
