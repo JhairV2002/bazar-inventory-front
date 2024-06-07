@@ -1,8 +1,4 @@
-import { useFormState, useFormStatus } from "react-dom";
 import BrandTable from "./components/BrandTable";
-import createBrand from "../utils/create-brand";
-import { BrandResDTO } from "../dtos/BrandResDTO";
-import loadBrands from "../utils/load-brands";
 import BrandForm from "./components/BrandForm";
 
 const BrandPage = () => {

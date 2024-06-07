@@ -1,3 +1,5 @@
+import { TOKEN } from "../cons/ApiConstans";
+
 export const genericRequest = <T, K>(
   url: string,
   method: string,
@@ -7,6 +9,7 @@ export const genericRequest = <T, K>(
     method,
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${TOKEN}`,
     },
     body: JSON.stringify(body),
   }).then<T>((response) => response.json());

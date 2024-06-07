@@ -1,6 +1,6 @@
 "use server";
 import { revalidatePath, revalidateTag } from "next/cache";
-import { POST_BRAND_URL } from "../cons/ApiConstans";
+import { POST_BRAND_URL, TOKEN } from "../cons/ApiConstans";
 import { BrandResDTO } from "../dtos/BrandResDTO";
 import { log } from "console";
 import { genericRequest } from "./fetcher";
@@ -8,7 +8,12 @@ import GenericResponseDTO from "../dtos/GenericResponseDTO";
 import BrandReqDTO from "../dtos/BrandReqDTO";
 
 const createBrand = async (
-  prevState: { message: string; className: string; showToast: boolean },
+  prevState: {
+    message: string;
+    className: string;
+    showToast: boolean;
+    showModal: boolean;
+  },
   formData: FormData
 ) => {
   const brandName = formData.get("brandName");
@@ -25,15 +30,9 @@ const createBrand = async (
       message: "El nombre de la marca no puede estar vacío",
       className: "alert-error",
       showToast: true,
+      showModal: false,
     };
   }
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ brandName }),
-  };
   try {
     const responseFetcher = await genericRequest<
       GenericResponseDTO<BrandResDTO>,
@@ -52,12 +51,14 @@ const createBrand = async (
       message: "Marca creada",
       className: "alert-success",
       showToast: true,
+      showModal: false,
     };
   } catch (error: any) {
     return {
       message: error.message || "Error al crear la marca",
       className: "alert-error",
       showToast: true,
+      showModal: false,
     };
   }
 };
